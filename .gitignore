@@ -1,3 +1,4 @@
 .github/
 **/README.md
 !README.md
+.env
