@@ -4,7 +4,7 @@
 Long Description about project. This project do that. This project is awesome...
 
 ## Team members
-1. Siby C.R. (GitHub: [sibycr18](https://github.com/sibycr18))
+1. Siby C.R. 🔗[sibycr18](https://github.com/sibycr18)
 2. Bharat Krishna 🔗[Github Profile](https://github.com/sibycr18)
 
 ## Team Id
