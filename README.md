@@ -1,11 +1,18 @@
 ![StackUp Banner](https://tinkerhub.frappe.cloud/files/stackup%20banner.jpeg)
 
-# Project Name
-Long Description about project. This project do that. This project is awesome...
+# Planner<sup>+</sup>
+Planner+ offers a seamless solution to the complexities of task management. With its user-friendly interface, you can effortlessly create tasks, set deadlines, and categorize assignments with a few clicks. Whether you're a professional aiming to meet project milestones or a student keeping track of assignments, Planner+ ensures that every task is captured, organized, and completed efficiently.
+
+## Key Features:
+
+* **Intuitive Task Creation and Management:**
+Planner+ simplifies task creation with a streamlined process, allowing you to note down your to-dos quickly.
+* **Dynamic Dashboard:**
+Access a dynamic dashboard displaying task progress, upcoming deadlines, and completed tasks at a glance, allowing you to stay informed about your productivity.
 
 ## Team members
 1. Siby C.R. 🔗[sibycr18](https://github.com/sibycr18)
-2. Bharat Krishna 🔗[Github Profile](https://github.com/sibycr18)
+2. Bharat Krishna 🔗[Bharat2026](https://github.com/Bharat2026)
 
 ## Team Id
 !idealists
