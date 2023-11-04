@@ -52,10 +52,14 @@ def register_user():
     data = request.get_json()
     username = data.get('username')
     password = data.get('password')
-    hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
-    user_id = users_collection.insert_one({'username': username, 'password': hashed_password}).inserted_id
-    response_data = {'message': 'User registered successfully', 'user_id': str(user_id)}
-    return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 201
+
+    if users_collection.find_one({'username': username}) == None:
+        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+        user_id = users_collection.insert_one({'username': username, 'password': hashed_password}).inserted_id
+        response_data = {'message': 'User registered successfully', 'user_id': str(user_id)}
+        return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 201
+    response_data = {'message': 'Username already exists'}
+    return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 409
 
 # User Login
 @app.route('/api/users/login', methods=['POST'])
@@ -121,3 +125,12 @@ def update_task(task_id):
 # Run Flask App
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
+
+""" TODO: Task Management Endpoints
+1. /api/mark/complete [POST]: Mark a task as complete
+2. /api/mark/incomplete [POST]: Mark a task as incomplete
+3. /api/tasks/upcoming [GET]: Get upcoming tasks
+4. /api/tasks/completed [GET]: Get completed tasks
+5. /api/tasks/add [POST]: Add a task
+6. /api/tasks/delete [POST]: Delete a task
+"""
