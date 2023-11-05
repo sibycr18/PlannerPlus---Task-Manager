@@ -179,16 +179,6 @@ def mark_task_incomplete():
         return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 404
 
 
-
 # Run Flask App
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
-
-""" TODO: Task Management Endpoints
-1. /api/mark/complete [POST]: Mark a task as complete
-2. /api/mark/incomplete [POST]: Mark a task as incomplete
-3. /api/tasks/upcoming [GET]: Get upcoming tasks    #left to check
-4. /api/tasks/completed [GET]: Get completed tasks  #left to check
-5. /api/tasks/add [POST]: Add a task
-6. /api/tasks/delete [POST]: Delete a task
-"""
