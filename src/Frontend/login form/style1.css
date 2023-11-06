@@ -16,7 +16,7 @@ section{
     position: relative;
     width: 400px;
     height: 450px;
-    background: transparent;
+    background: red;
     display: flex;
     justify-content: center;
     align-items: center;
