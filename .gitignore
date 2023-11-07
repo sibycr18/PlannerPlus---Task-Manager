@@ -5,3 +5,4 @@ flask_session
 venv
 package-lock.json
 package.json
+.DS_Store
