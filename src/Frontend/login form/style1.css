@@ -56,3 +56,10 @@ top: -5px;
     padding:35px 0 5px;
 
 }
+.inputbox ion-icon{
+    position: absolute;
+    right: 8px;
+    color: #fff;
+    font-size: 1.2em;
+    top: 20px;
+}
