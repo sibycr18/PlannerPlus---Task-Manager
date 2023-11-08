@@ -54,7 +54,7 @@ ul{
     display: flex;
     justify-content: space-between;
     width: 100%;
-    max-width: 1200px;
+    max-width: 12000px;
     height: 90vh;
     max-height: 900px;
     background: #fff;
@@ -97,4 +97,9 @@ ul{
     border-radius: 50%;
     width: 4px;
     box-shadow: -6px  0   0   0 #d5d7e3, 6px   0   0   0   #d5d7e3;
+}
+.page-content .header{
+    font-size: 26px;
+    color: var(--main-color);
+    margin-top: 30px;
 }
