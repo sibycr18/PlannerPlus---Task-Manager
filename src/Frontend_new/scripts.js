@@ -18,7 +18,7 @@ loginButton.addEventListener('click', function(event) {
     };
 
     // Make an API request to the backend server
-    fetch('https://example.com/api/login', {
+    fetch('https://planner-plus-server-c35af645f504.herokuapp.com/api/users/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -30,6 +30,7 @@ loginButton.addEventListener('click', function(event) {
         // Check the API response and redirect accordingly
         if (data.success) {
             // If login is successful, redirect to the dashboard page
+            alert('Login successful!');
             window.location.href = 'dashboard.html'; // Replace 'dashboard.html' with the actual path to your dashboard page
         } else {
             // If login fails, display an error message (you can customize this part)
