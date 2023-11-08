@@ -102,4 +102,8 @@ ul{
     font-size: 26px;
     color: var(--main-color);
     margin-top: 30px;
+    position: relative;
+    right: 400px;
+    top: 10px;
 }
+
