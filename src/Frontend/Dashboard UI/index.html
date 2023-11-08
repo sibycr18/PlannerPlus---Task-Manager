@@ -8,33 +8,33 @@
 </head>
 <body>
     <div class="taskmanager">
+
         <!-- left bar starts -->
         <div class="left-bar">
-            <div class="upper-part">
                 <div class="actions">
                     <div class="circle"></div>
                     <div class="circle-2"></div>
-
                 </div>
-            </div>
-            <!-- left content -->
+
+            <!-- left content starts -->
             <div class="left-content">
                 <ul class="actions-list">
 
                     <li class="item">
                         <!-- <ion-icon name="timer-outline.svg"></ion-icon> -->
                         <img src="timer-outline.svg" alt="">
-                        <span>Inbox</span>
+                        <span>UPCOMING</span>
                     </li>
 
                     <li class="item">
                         <img src="" alt="">
-                        <span>today</span>
+                        <span>completed</span>
                     </li>
 
                 </ul>
             </div>
             <!-- left content ends -->
+
         </div>
         <!-- left bar ends -->
 
@@ -44,11 +44,34 @@
 
             <!-- content categories starts -->
             <div class="contnet-categories">
-                <div class="label-wrapper">
-                    <input type="radio" name="nav" id = "opt-1" class = nav item>
-                    <label for="cate"></label>
+                <!-- task1 -->
+                <div class="task">
+                    <input type="checkbox" name="task" id = "item-1" class="task-item" checked>
+                    <label for="item-1">
+                        <span class="label-text"> Dashboard Design Implementation</span>
+                    </label>
+                    <span class="tag approved">Approved</span>
+                </div>
+
+                <!-- task2 -->
+                <div class="task">
+                    <input type="checkbox" name="task" id = "item-2" class="task-item" checked>
+                    <label for="item-1">
+                        <span class="label-text"> Dashboard Design Implementation</span>
+                    </label>
+                    <span class="tag approved">Approved</span>
+                </div>
+
+                <!-- task3 -->
+                <div class="task">
+                    <input type="checkbox" name="task" id = "item-3" class="task-item" checked>
+                    <label for="item-1">
+                        <span class="label-text"> Dashboard Design Implementation</span>
+                    </label>
+                    <span class="tag approved">Approved</span>
                 </div>
             </div>
+
         </div>
     </div>
 </body>
