@@ -61,9 +61,9 @@ def register_user():
     if users_collection.find_one({'username': username}) == None:
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
         user_id = users_collection.insert_one({'username': username, 'password': hashed_password}).inserted_id
-        response_data = {'message': 'User registered successfully', 'user_id': str(user_id)}
+        response_data = {'success': True, 'message': 'User registered successfully', 'user_id': str(user_id)}
         return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 201
-    response_data = {'message': 'Username already exists'}
+    response_data = {'success': False, 'message': 'Username already exists'}
     return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 409
 
 # User Login
@@ -75,10 +75,10 @@ def login_user():
     user = users_collection.find_one({'username': username})
     if user and bcrypt.check_password_hash(user['password'], password):
         session['user_id'] = str(user['_id'])  # Set user ID in session
-        response_data = {'message': 'Login successful'}
+        response_data = {'success': True, 'message': 'Login successful'}
         return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 200
     else:
-        response_data = {'message': 'Invalid credentials'}
+        response_data = {'success': False, 'message': 'Invalid credentials'}
         return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 401
 
 
@@ -86,7 +86,7 @@ def login_user():
 @app.route('/api/users/logout', methods=['GET'])
 def logout_user():
     session.clear()  # Clear session data
-    response_data = {'message': 'User logged out successfully'}
+    response_data = {'success': True, 'message': 'User logged out successfully'}
     return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 200
 
 
@@ -114,10 +114,10 @@ def add_task():
     }
     result = tasks_collection.insert_one(task_data)
     if result.inserted_id:
-        response_data = {'message': 'Task added successfully', 'task_id': str(task_data['_id'])}
+        response_data = {'success': True, 'message': 'Task added successfully', 'task_id': str(task_data['_id'])}
         return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 201
     else:
-        response_data = {'message': 'User not found or task could not be added'}
+        response_data = {'success': False, 'message': 'User not found or task could not be added'}
         return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 404
 
 # Delete a Task
@@ -128,24 +128,24 @@ def delete_task():
     user_id = data.get('user_id')
     result = tasks_collection.delete_one({'_id': ObjectId(task_id), 'user_id': ObjectId(user_id)})
     if result.deleted_count > 0:
-        response_data = {'message': 'Task deleted successfully'}
+        response_data = {'success': True, 'message': 'Task deleted successfully'}
         return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 200
     else:
-        response_data = {'message': 'Task not found or user not authorized'}
+        response_data = {'success': False, 'message': 'Task not found or user not authorized'}
         return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 404
 
 # Get Upcoming Tasks
 @app.route('/api/tasks/pending/<user_id>', methods=['GET'])
 def get_upcoming_tasks(user_id):
     upcoming_tasks = list(tasks_collection.find({'user_id': ObjectId(user_id), 'completed': False}))
-    response_data = {'tasks': upcoming_tasks}
+    response_data = {'success': True, 'tasks': upcoming_tasks}
     return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 200
 
 # Get Completed Tasks
 @app.route('/api/tasks/completed/<user_id>', methods=['GET'])
 def get_completed_tasks(user_id):
     completed_tasks = list(tasks_collection.find({'user_id': ObjectId(user_id), 'completed': True}))
-    response_data = {'tasks': completed_tasks}
+    response_data = {'success': True, 'tasks': completed_tasks}
     return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 200
 
 # Mark Task as Complete
@@ -159,10 +159,10 @@ def mark_task_complete():
         {'$set': {'completed': True}}
     )
     if result.modified_count > 0:
-        response_data = {'message': 'Task marked as complete successfully'}
+        response_data = {'success': True, 'message': 'Task marked as complete successfully'}
         return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 200
     else:
-        response_data = {'message': 'Task not found or user not authorized'}
+        response_data = {'success': False, 'message': 'Task not found or user not authorized'}
         return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 404
 
 # Mark Task as Incomplete
@@ -176,10 +176,10 @@ def mark_task_incomplete():
         {'$set': {'completed': False}}
     )
     if result.modified_count > 0:
-        response_data = {'message': 'Task marked as incomplete successfully'}
+        response_data = {'success': True, 'message': 'Task marked as incomplete successfully'}
         return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 200
     else:
-        response_data = {'message': 'Task not found or user not authorized'}
+        response_data = {'success': False, 'message': 'Task not found or user not authorized'}
         return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 404
 
 
