@@ -39,12 +39,62 @@ body{
     font-family: 'DM Sans',sans-serif;
     font-size: 12px;
     background-image: linear-gradient(21deg, rgba(64, 83, 206, 0.369700324675773) 68%, rgba(255,206,196,0.5) 163%),
+    linear-gradient(163deg, rgba(49,146,170,0.07944489965716128)86%,rgba(239,112,138,0.5) 40%),
+    linear-gradient(30deg, rgba(76,79,173,0.6173675716587805) 22%,rgba(237,106,134,0.5)169%),
+    linear-gradient(48deg,rgba(31,85,147,0.7323890641868473) 64%, rgba(247,126,132,0.5) 43%);  
+    background-blend-mode: overlay, multiply, color, normal;
+}
 
-    linear-gradient(163deg,rgba(49,146,170,0.07944489965716128)86%,rgba(239,112,138,0.5)40%),
+ul{
+    list-style-type: none;
+    padding: 0;
+}
 
-    linear-gradient(30deg, rgba(76,79,173,0.6173675716587805) 22% rgba(237,106,134,0.5)169%),
+.taskmanager{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    height: 90vh;
+    max-height: 900px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0.3px 2.2px rgba(0, 0, 0, 0.011),
+     0 0.7px 5.3px rgba(0, 0, 0, 0.016),
+    0 1.3px 10px rgba(0, 0, 0, 0.02),
+     0 2.2px 17.9px rgba(0, 0, 0, 0.024),
+    0 4.2px 33.4px rgba(0, 0, 0, 0.029), 
+    0 10px 80px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+}
 
-    linear-gradient(48deg,rgba(31,85,147,0.7323890641868473) 64%, rgba(247,126,132,0.5) 43%);
-
-    background-blend-mode: overlay,multiply,color,normal;
+.left-bar{
+    background-color: var(--bg-color);
+    width: 230px;
+    border-right: 1px solid #e3e7f7;
+    position: relative;
+}
+.left-content{
+    padding: 40px;
+}
+.item{
+    color:var(--main-color);
+    margin-bottom: 14px;
+    font-weight: 550;
+}
+.item ionicon{
+    width: 14px;
+    height: 14px;
+}
+.circle{
+    border-radius:50%;
+    width: 10px;
+    height: 10px;
+    background-color: #fe4d4d;
+    box-shadow: 14px 0 0 0 #fdc023, 28px 0   0   0   #7dd21f;
+}
+.circle2{
+    border-radius: 50%;
+    width: 4px;
+    box-shadow: -6px  0   0   0 #d5d7e3, 6px   0   0   0   #d5d7e3;
 }
