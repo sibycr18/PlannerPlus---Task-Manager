@@ -43,6 +43,10 @@ tasks_collection = client.PlannerPlus.Tasks
 def test_api():
     return {"message" : "Connection Successful"}
 
+@app.route('/')
+def test():
+    return "Hello, World!"
+
 
 ## User Authentication Endpoints
 ## =========================================================================================================
