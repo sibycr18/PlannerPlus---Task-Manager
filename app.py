@@ -44,7 +44,7 @@ def test_api():
     return {"message" : "Connection Successful"}
 
 @app.route('/')
-def test():
+def hello_world_message():
     return "Hello, World!"
 
 
