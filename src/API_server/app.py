@@ -5,6 +5,7 @@ from bson import json_util, ObjectId
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 from dotenv import load_dotenv
+from datetime import datetime
 import os
 
 app = Flask(__name__)
@@ -90,47 +91,94 @@ def logout_user():
 ## Task Management Endpoints
 ## =========================================================================================================
 
-# Create Task
-@app.route('/api/tasks', methods=['POST'])
-def create_task():
+# Add a Task
+@app.route('/api/tasks/add', methods=['POST'])
+def add_task():
     data = request.get_json()
-    title = data.get('title')
-    description = data.get('description')
-    due_date = data.get('due_date')
     user_id = data.get('user_id')
-    task_id = tasks_collection.insert_one({'title': title, 'description': description, 'due_date': due_date, 'user_id': user_id}).inserted_id
-    response_data = {'message': 'Task created successfully', 'task_id': str(task_id)}
-    return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 201
+    completed = False
+    task_desc = data.get('task_desc')
+    due = data.get('due')  # Format: <YYYY-mm-ddTHH:MM:ss>
+    tags = data.get('tags', [])  # List of tags
+    task_data = {
+        '_id': ObjectId(),
+        'user_id': ObjectId(user_id),
+        'task_desc': task_desc,
+        'completed': completed,
+        'due': datetime.strptime(due, f'%Y-%m-%dT%H:%M:%S%z'),
+        'tags': tags
+    }
+    result = tasks_collection.insert_one(task_data)
+    if result.inserted_id:
+        response_data = {'message': 'Task added successfully', 'task_id': str(task_data['_id'])}
+        return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 201
+    else:
+        response_data = {'message': 'User not found or task could not be added'}
+        return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 404
 
-# Get Tasks for a User
-@app.route('/api/tasks/<user_id>', methods=['GET'])
-def get_user_tasks(user_id):
-    tasks = list(tasks_collection.find({'user_id': ObjectId(user_id)}))
-    response_data = {'tasks': tasks}
+# Delete a Task
+@app.route('/api/tasks/delete', methods=['DELETE'])
+def delete_task():
+    data = request.get_json()
+    task_id = data.get('task_id')
+    user_id = data.get('user_id')
+    result = tasks_collection.delete_one({'_id': ObjectId(task_id), 'user_id': ObjectId(user_id)})
+    if result.deleted_count > 0:
+        response_data = {'message': 'Task deleted successfully'}
+        return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 200
+    else:
+        response_data = {'message': 'Task not found or user not authorized'}
+        return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 404
+
+# Get Upcoming Tasks
+@app.route('/api/tasks/pending/<user_id>', methods=['GET'])
+def get_upcoming_tasks(user_id):
+    upcoming_tasks = list(tasks_collection.find({'user_id': ObjectId(user_id), 'completed': False}))
+    response_data = {'tasks': upcoming_tasks}
     return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 200
 
-# Update Task
-@app.route('/api/tasks/<task_id>', methods=['PUT'])
-def update_task(task_id):
-    data = request.get_json()
-    edited_title = data.get('title')
-    edited_description = data.get('description')
-    edited_due_date = data.get('due_date')
-    user_id = data.get('user_id')
-    tasks_collection.update_one({'_id': ObjectId(task_id), 'user_id': user_id}, {'$set': {'title': edited_title, 'description': edited_description, 'due_date': edited_due_date}})
-    response_data = {'message': 'Task updated successfully'}
+# Get Completed Tasks
+@app.route('/api/tasks/completed/<user_id>', methods=['GET'])
+def get_completed_tasks(user_id):
+    completed_tasks = list(tasks_collection.find({'user_id': ObjectId(user_id), 'completed': True}))
+    response_data = {'tasks': completed_tasks}
     return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 200
+
+# Mark Task as Complete
+@app.route('/api/tasks/mark/complete', methods=['POST'])
+def mark_task_complete():
+    data = request.get_json()
+    task_id = data.get('task_id')
+    user_id = data.get('user_id')
+    result = tasks_collection.update_one(
+        {'user_id': ObjectId(user_id), '_id': ObjectId(task_id)},
+        {'$set': {'completed': True}}
+    )
+    if result.modified_count > 0:
+        response_data = {'message': 'Task marked as complete successfully'}
+        return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 200
+    else:
+        response_data = {'message': 'Task not found or user not authorized'}
+        return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 404
+
+# Mark Task as Incomplete
+@app.route('/api/tasks/mark/incomplete', methods=['POST'])
+def mark_task_incomplete():
+    data = request.get_json()
+    task_id = data.get('task_id')
+    user_id = data.get('user_id')
+    result = tasks_collection.update_one(
+        {'user_id': ObjectId(user_id), '_id': ObjectId(task_id)},
+        {'$set': {'completed': False}}
+    )
+    if result.modified_count > 0:
+        response_data = {'message': 'Task marked as incomplete successfully'}
+        return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 200
+    else:
+        response_data = {'message': 'Task not found or user not authorized'}
+        return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 404
 
 
 # Run Flask App
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
-
-""" TODO: Task Management Endpoints
-1. /api/mark/complete [POST]: Mark a task as complete
-2. /api/mark/incomplete [POST]: Mark a task as incomplete
-3. /api/tasks/upcoming [GET]: Get upcoming tasks
-4. /api/tasks/completed [GET]: Get completed tasks
-5. /api/tasks/add [POST]: Add a task
-6. /api/tasks/delete [POST]: Delete a task
-"""
+    app.run(debug=True, host='0.0.0.0', port=5010)
