@@ -1,5 +1,3 @@
-**/README.md
-!README.md
 .env
 flask_session
 venv
