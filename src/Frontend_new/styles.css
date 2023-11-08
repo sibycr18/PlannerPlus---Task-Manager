@@ -148,3 +148,9 @@ button {
 .register p a:hover {
     text-decoration: underline;
 }
+
+/* .eror-message {
+    font-size: 0.5em;
+    color: red;
+    margin-bottom: 10px;
+} */

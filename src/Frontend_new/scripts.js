@@ -1,6 +1,7 @@
 // LOGIN PAGE
 // Get the login button element by its ID
 const loginButton = document.getElementById('login-button');
+const errorMessage = document.getElementById('login-error-message');
 
 // Add click event listener to the login button
 loginButton.addEventListener('click', function(event) {
@@ -30,11 +31,10 @@ loginButton.addEventListener('click', function(event) {
         // Check the API response and redirect accordingly
         if (data.success) {
             // If login is successful, redirect to the dashboard page
-            alert('Login successful!');
             window.location.href = 'dashboard.html'; // Replace 'dashboard.html' with the actual path to your dashboard page
         } else {
-            // If login fails, display an error message (you can customize this part)
-            alert('Login failed. Please check your username and password.');
+            // If login fails, display an error message
+            errorMessage.textContent = 'Login failed. Please check your credentials!';
         }
     })
     .catch(error => {
