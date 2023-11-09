@@ -48,7 +48,8 @@ document.addEventListener('DOMContentLoaded', function() {
 // REGISTER PAGE
 document.addEventListener('DOMContentLoaded', function() {
     const registerButton = document.getElementById('register-button');
-    const errorMessage = document.getElementById('register-error-message');
+    const errorMessage = document.getElementById('register-error');
+    const errorMessageText = document.getElementById('register-error-message');
 
     registerButton.addEventListener('click', function(event) {
         event.preventDefault();
@@ -80,8 +81,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.location.href = 'login.html';
             } else {
                 // If registration fails, display an error message
-                // errorMessage.textContent = 'User already exists.';
-                alert('User already exists.');
+                errorMessageText.textContent = 'User already exists.';
+                errorMessage.style.display = "block";
+                // alert('User already exists.');
             }
         })
         .catch(error => {
