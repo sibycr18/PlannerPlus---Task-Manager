@@ -371,30 +371,27 @@ position: absolute;
     cursor: pointer;
 }
   
- .logout-button{
-    background-color: grey; 
-     border: none;
-    color: white;
-    border-radius: 50%;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px; 
-}
+/* position of logout button */
 .logout-button{
     position: absolute;
     top: 80px;
     right: 180px;
 } 
+#logout{
+    background-color:  #e7e7e7;
+    color: #555;
+    /* border: 2px solid #04AA6D; */
+    padding: 15px 32px;
+    font-size: 20px;
+    border-radius: 30px;
+}
 .task-button{
     /* position of the button */
     position: absolute;
     top: 110px;
     right: 650px;
-
-    background-color: #009e90;
 }
-.task-button ion-icon{
-    size: 500px;
+# add-task{
+    font-size: 18px;
+    font-weight: 900px;
 }
