@@ -21,19 +21,19 @@
             </div>
 
 
-            <!--left content Starts-->
-            <div class="left-content">
-                <ul class="action-list">
+        <!--left content Starts-->
+        <div class="left-content">
+            <ul class="action-list">
+               
+                <li class="item">
+                    <img src="/svg/star.svg" alt="" class="feather feather-star">
+                    <button id="pending">pending</button>
+                </li>
 
-                    <li class="item" id="pending">
-                        <ion-icon name="time"></ion-icon>
-                        <span>Pending</span>
-                    </li>
-
-                    <li class="item" id="completed">
-                        <ion-icon name="checkmark-circle"></ion-icon>
-                        <span>Completed</span>
-                    </li>
+                <li class="item">
+                    <img src="/svg/calender.svg" alt="" class="feather feather-calender">
+                    <button id="completed">completed</button>
+                </li>
 
                 </ul>
 
@@ -99,11 +99,20 @@
 
             </div>
 
-            <!---tasks wrapper Ends-->
-
-
-
-        </div>
+    <!---tasks wrapper Ends-->
+    <div class="task-button">
+        <button id="add-task">
+            Add Task
+            <!-- <ion-icon name="add-outline"></ion-icon> -->
+        </button>
+    </div>
+    
+    <div class="logout-button">
+        <button id = logout>
+            logout
+        </button>
+    </div>
+</div>
 
         <!--page content Ends-->
 

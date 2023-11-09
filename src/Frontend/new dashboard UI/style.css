@@ -395,25 +395,24 @@ position: absolute;
     cursor: pointer;
 }
   
+/* position of logout button */
 .logout-button{
-    border: none;
+    position: absolute;
+    top: 80px;
+    right: 180px;
+} 
+#logout{
+    background-color:  black;
     color: white;
+    /* border: 2px solid #04AA6D; */
+    padding: 10px 25px;
+    font-size: 20px;
+    border-radius: 30px;
 }
 
-.icon-button{
-    background-color: transparent;
-    border: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #04AA6D;
-    cursor: pointer;
-}
-
-.icon-button ion-icon{
-    font-size: 16px;
-    color: #fff;
+ /* position of the  task button */
+.task-button{
+    position: absolute;
+    top: 110px;
+    right: 650px;
 }
