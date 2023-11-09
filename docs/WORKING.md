@@ -1,8 +1,8 @@
-### **Introduction:**
+# **Introduction:**
 
 Here's how Planner+ operates: delving into its backend architecture, MongoDB communication, and frontend technologies. This breakdown unveils the app's seamless integration, transforming task management into a collaborative and efficient experience for users.
 
-### **Backend Architecture (Flask Server):** 
+## **Backend Architecture (Flask Server)** 
 
 **1. Flask Web Server:** 
 - Planner+ backend is built using Flask, a lightweight and efficient Python web framework. Flask handles incoming HTTP requests and generates appropriate responses, serving as the backbone of the application.
@@ -19,7 +19,7 @@ Here's how Planner+ operates: delving into its backend architecture, MongoDB com
 **5. Data Validation and Business Logic:** 
 - Before interacting with the database, Flask validates the incoming data to ensure it meets the required format and criteria. Additionally, the backend applies business logic, such as task validation and user authentication, to maintain data integrity and application security.
 
-### **Database (MongoDB):** 
+## **Database (MongoDB)** 
 
 **1. MongoDB Atlas:** 
 - Planner+ uses MongoDB Atlas, a cloud-based MongoDB database service. MongoDB is a NoSQL database, allowing flexible and scalable storage of JSON-like documents. It stores data in collections, where each collection contains documents (equivalent to rows in SQL databases).
@@ -30,7 +30,7 @@ Here's how Planner+ operates: delving into its backend architecture, MongoDB com
 **3. Data Storage:** 
 - Planner+ stores user profiles, task details, categories, and other relevant data in different collections within MongoDB. Each user's tasks and related information are linked to their unique user ID.
 
-### **Frontend Technologies (HTML, CSS, JavaScript):** 
+## **Frontend Technologies (HTML, CSS, JavaScript)** 
 
 **1. HTML Templates:** 
 - HTML templates are used to create the structure of Planner+'s web pages. These templates contain placeholders where dynamic content, fetched from the backend, is injected. For instance, the task list and user information are populated dynamically based on API responses.
