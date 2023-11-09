@@ -16,7 +16,7 @@ Here's how Planner+ operates: delving into its backend architecture, MongoDB com
 **4. Database Interaction:** 
 - Flask communicates with the MongoDB database using a MongoDB driver (such as PyMongo). When a request comes in, Flask processes the request data and interacts with the database based on the endpoint's logic. For example, when creating a new task, Flask saves the task data in the MongoDB database.
 
-**5. Data Validation and Business Logic:** 
+**5. Data Validation:** 
 - Before interacting with the database, Flask validates the incoming data to ensure it meets the required format and criteria. Additionally, the backend applies business logic, such as task validation and user authentication, to maintain data integrity and application security.
 
 ## **Database (MongoDB)** 
