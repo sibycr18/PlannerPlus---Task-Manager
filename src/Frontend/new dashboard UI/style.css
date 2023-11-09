@@ -371,38 +371,3 @@ position: absolute;
     cursor: pointer;
 }
 
-@media screen and(max-width:900px){
-    .left-bar{
-        display: none;
-    }
-}
-
-@media screen and (max-width:700px){
-    .task-manager{
-        flex-direction: column;
-        overflow-y: auto;
-    }
-    .right-bar,
-    .page-content{
-        width: 100%;
-        display: block;
-    }
-    .tasks-wrapper{
-        height: auto;
-    }
-}
-
-@media screen and (max-width:520px){
-    .page-content{
-        padding: 40px 10px 0 10px;
-
-    }
-    .right-content{
-        padding: 10px 16px;
-    }
-
-    .category{
-        padding: 20px;
-    }
-
-}
