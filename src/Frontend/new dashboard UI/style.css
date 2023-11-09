@@ -378,10 +378,10 @@ position: absolute;
     right: 180px;
 } 
 #logout{
-    background-color:  #e7e7e7;
-    color: #555;
+    background-color:  black;
+    color: white;
     /* border: 2px solid #04AA6D; */
-    padding: 15px 32px;
+    padding: 10px 25px;
     font-size: 20px;
     border-radius: 30px;
 }
