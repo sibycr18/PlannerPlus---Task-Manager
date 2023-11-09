@@ -1,7 +1,7 @@
 ![StackUp Banner](https://tinkerhub.frappe.cloud/files/stackup%20banner.jpeg)
 
 # Planner<sup>+</sup>
-Planner<sup>+</sup> offers a seamless solution to the complexities of task management. With its user-friendly interface, you can effortlessly create tasks, set deadlines, and categorize assignments with a few clicks. Whether you're a professional aiming to meet project milestones or a student keeping track of assignments, Planner<sup>+</sup> ensures that every task is captured, organized, and completed efficiently.
+Planner<sup>+</sup> offers a user-friendly interface where you can effortlessly create and manage your tasks with a few clicks. Whether you're a professional aiming to meet project milestones or a student keeping track of assignments, Planner<sup>+</sup> ensures that every task is captured, organized, and completed efficiently.
 
 ## Key Features:
 
