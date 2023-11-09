@@ -1,4 +1,4 @@
-This document provides instructions on how to configure and run the test suite for the Planner Plus Server.
+This document provides instructions on how to configure and run the tests for the Planner<sup>+</sup> API Server.
 ## Configuration
 ### Prerequisites
 - Python installed on your system.
