@@ -385,13 +385,10 @@ position: absolute;
     font-size: 20px;
     border-radius: 30px;
 }
+
+ /* position of the  task button */
 .task-button{
-    /* position of the button */
     position: absolute;
     top: 110px;
     right: 650px;
-}
-# add-task{
-    font-size: 18px;
-    font-weight: 900px;
 }
