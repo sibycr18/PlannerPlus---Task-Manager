@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Set user_id in local storage
                     localStorage.setItem('user_id', data.user_id);
                     // Redirect to the dashboard page
-                    window.location.href = '../../Frontend/dashboard/dashboard.html'; // Replace 'dashboard.html' with the actual path to your dashboard page
+                    window.location.href = 'index.html'; // Replace 'dashboard.html' with the actual path to your dashboard page
                 } else {
                     // If login fails, display an error message
                     errorMessage.textContent = 'Login failed. Please check your credentials!';
@@ -254,9 +254,6 @@ document.addEventListener('DOMContentLoaded', function () {
         // Prevent the default behavior of the button
         event.preventDefault();
 
-        // Assuming you have the user_id stored globally or retrieved from storage
-        var user_id = '...'; // Replace with the actual user_id
-
         // Make a GET request to the server logout endpoint
         fetch(`https://planner-plus-server-c35af645f504.herokuapp.com/api/users/logout`, {
             method: 'GET'
@@ -266,7 +263,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Assuming the server returns a success message
                 if (data.success) {
                     // Redirect to the login page after logout
-                    window.location.href = '../../Frontend/authorization/login.html'; // Update with the actual path to your login page
+                    window.location.href = 'login.html'; // Update with the actual path to your login page
                 } else {
                     // Handle logout failure, display an error message, etc.
                     console.error('Logout failed:', data.message);

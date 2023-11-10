@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Cookies.set('user_id', data.user_id);
                 var user_id = data.user_id
                 console.log(user_id)
-                window.location.href = '../../Frontend/dashboard/dashboard.html'; // Replace 'dashboard.html' with the actual path to your dashboard page
+                window.location.href = 'index.html'; // Replace 'dashboard.html' with the actual path to your dashboard page
             } else {
                 // If login fails, display an error message
                 errorMessage.textContent = 'Login failed. Please check your credentials!';
