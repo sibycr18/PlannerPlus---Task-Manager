@@ -293,7 +293,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Create a "tick" button
       const tickButton = document.createElement('button');
-      tickButton.innerText = 'Tick';
+      tickButton.innerText = 'Add Task';
       
       // Append the new input and button to the tasks container
       tasksContainer.appendChild(newTaskInput);
