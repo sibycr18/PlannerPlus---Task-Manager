@@ -2,13 +2,13 @@
 // Declare user_id globally
 var user_id;
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Get the login button element by its ID
     const loginButton = document.getElementById('login-button');
     const errorMessage = document.getElementById('login-error-message');
 
     // Add click event listener to the login button
-    loginButton.addEventListener('click', function(event) {
+    loginButton.addEventListener('click', function (event) {
         // Prevent the default form submission behavior
         event.preventDefault();
 
@@ -30,33 +30,33 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             body: JSON.stringify(credentials)
         })
-        .then(response => response.json())
-        .then(data => {
-            // Check the API response and redirect accordingly
-            if (data.success) {
-                // Set user_id in local storage
-                localStorage.setItem('user_id', data.user_id);
-                // Redirect to the dashboard page
-                window.location.href = '../../Frontend/dashboard/dashboard.html'; // Replace 'dashboard.html' with the actual path to your dashboard page
-            } else {
-                // If login fails, display an error message
-                errorMessage.textContent = 'Login failed. Please check your credentials!';
-            }
-        })
-        .catch(error => {
-            // Handle any errors that occurred during the fetch operation
-            console.error('Error:', error);
-        });
+            .then(response => response.json())
+            .then(data => {
+                // Check the API response and redirect accordingly
+                if (data.success) {
+                    // Set user_id in local storage
+                    localStorage.setItem('user_id', data.user_id);
+                    // Redirect to the dashboard page
+                    window.location.href = '../../Frontend/dashboard/dashboard.html'; // Replace 'dashboard.html' with the actual path to your dashboard page
+                } else {
+                    // If login fails, display an error message
+                    errorMessage.textContent = 'Login failed. Please check your credentials!';
+                }
+            })
+            .catch(error => {
+                // Handle any errors that occurred during the fetch operation
+                console.error('Error:', error);
+            });
     });
 });
 
 // REGISTER PAGE --------------------------------------------------------------------------------------------
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const registerButton = document.getElementById('register-button');
     const errorMessage = document.getElementById('register-error');
     const errorMessageText = document.getElementById('register-error-message');
 
-    registerButton.addEventListener('click', function(event) {
+    registerButton.addEventListener('click', function (event) {
         event.preventDefault();
 
         // Get the username and password inputs for registration
@@ -78,23 +78,23 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             body: JSON.stringify(credentials)
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // If registration is successful, redirect to the login page
-                alert('Registration successful! You can now log in now.');
-                window.location.href = 'login.html';
-            } else {
-                // If registration fails, display an error message
-                errorMessageText.textContent = 'User already exists.';
-                errorMessage.style.display = "block";
-                // alert('User already exists.');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            errorMessage.textContent = 'An error occurred during registration. Please try again later.';
-        });
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // If registration is successful, redirect to the login page
+                    alert('Registration successful! You can now log in now.');
+                    window.location.href = 'login.html';
+                } else {
+                    // If registration fails, display an error message
+                    errorMessageText.textContent = 'User already exists.';
+                    errorMessage.style.display = "block";
+                    // alert('User already exists.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                errorMessage.textContent = 'An error occurred during registration. Please try again later.';
+            });
     });
 });
 
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // });
 
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Function to fetch and render uncompleted tasks
     function loadPendingTasks() {
         clearTasks()
@@ -186,14 +186,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Attach event listener to the Completed button
     const completedButton = document.getElementById('completed-button');
-    completedButton.addEventListener('click', function() {
+    completedButton.addEventListener('click', function () {
         // Load completed tasks when the Completed button is clicked
         loadCompletedTasks();
     });
 
     // Attach event listener to the Pending button
     const pendingButton = document.getElementById('pending-button');
-    pendingButton.addEventListener('click', function() {
+    pendingButton.addEventListener('click', function () {
         // Load completed tasks when the Completed button is clicked
         loadPendingTasks();
     });
@@ -245,12 +245,12 @@ function renderTasks(tasks) {
 
 
 // Logout button clicked
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Get the logout button element by its ID
     const logoutButton = document.getElementById('logout-button');
 
     // Add click event listener to the logout button
-    logoutButton.addEventListener('click', function(event) {
+    logoutButton.addEventListener('click', function (event) {
         // Prevent the default behavior of the button
         event.preventDefault();
 
@@ -261,81 +261,95 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch(`https://planner-plus-server-c35af645f504.herokuapp.com/api/users/logout`, {
             method: 'GET'
         })
-        .then(response => response.json())
-        .then(data => {
-            // Assuming the server returns a success message
-            if (data.success) {
-                // Redirect to the login page after logout
-                window.location.href = '../../Frontend/authorization/login.html'; // Update with the actual path to your login page
-            } else {
-                // Handle logout failure, display an error message, etc.
-                console.error('Logout failed:', data.message);
-            }
-        })
-        .catch(error => {
-            // Handle any errors that occurred during the fetch operation
-            console.error('Error:', error);
-        });
+            .then(response => response.json())
+            .then(data => {
+                // Assuming the server returns a success message
+                if (data.success) {
+                    // Redirect to the login page after logout
+                    window.location.href = '../../Frontend/authorization/login.html'; // Update with the actual path to your login page
+                } else {
+                    // Handle logout failure, display an error message, etc.
+                    console.error('Logout failed:', data.message);
+                }
+            })
+            .catch(error => {
+                // Handle any errors that occurred during the fetch operation
+                console.error('Error:', error);
+            });
     });
 });
 
 
 // Add task when button clicked
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const tasksContainer = document.querySelector('.tasks-wrapper');
     const addTaskButton = document.getElementById('add-task');
 
-    addTaskButton.addEventListener('click', function() {
-      // Create a new task input field
-      const newTaskInput = document.createElement('input');
-      newTaskInput.type = 'text';
-      newTaskInput.placeholder = 'Enter task text...';
+    addTaskButton.addEventListener('click', function () {
+        /////////////////////
+        //   // Create a new task input field
+        //   const newTaskInput = document.createElement('input');
+        //   newTaskInput.type = 'text';
+        //   newTaskInput.placeholder = 'Enter task text...';
 
-      // Create a "tick" button
-      const tickButton = document.createElement('button');
-      tickButton.innerText = 'Add Task';
-      
-      // Append the new input and button to the tasks container
-      tasksContainer.appendChild(newTaskInput);
-      tasksContainer.appendChild(tickButton);
+        //   // Create a "tick" button
+        //   const tickButton = document.createElement('button');
+        //   tickButton.innerText = 'Add Task';
 
-      // Add event listener to the "tick" button
-      tickButton.addEventListener('click', function() {
-        // Get the text from the input field
-        const taskText = newTaskInput.value;
+        //   // Append the new input and button to the tasks container
+        //   tasksContainer.appendChild(newTaskInput);
+        //   tasksContainer.appendChild(tickButton);
 
-        // Call a function to add the task using an API request
-        addTask(taskText);
+        //   // Add event listener to the "tick" button
+        //   tickButton.addEventListener('click', function() {
+        //     // Get the text from the input field
+        //     const taskText = newTaskInput.value;
 
-        // Remove the input field and button after adding the task
-        tasksContainer.removeChild(newTaskInput);
-        tasksContainer.removeChild(tickButton);
-      });
+        //     // Call a function to add the task using an API request
+        //     addTask(taskText);
+
+        //     // Remove the input field and button after adding the task
+        //     tasksContainer.removeChild(newTaskInput);
+        //     tasksContainer.removeChild(tickButton);
+        //   });
+        ///////////////////////////////
+
+        // Add Task Section
+        const taskInput = document.getElementById('taskInput');
+        const addTaskButton = document.getElementById('addTaskButton');
+
+        addTaskButton.addEventListener('click', function () {
+            const taskText = taskInput.value.trim();
+
+            if (taskText !== '') {
+                addTask(taskText);
+            }
+        });
     });
 
     function addTask(taskText) {
         console.log(localStorage.getItem('user_id'))
         console.log(taskText)
-      // Make an API request to add the task
-      // Replace this with your actual API endpoint and request logic
-      fetch('https://planner-plus-server-c35af645f504.herokuapp.com/api/tasks/add', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          user_id: localStorage.getItem('user_id'),
-          task_desc: taskText,
-        }),
-      })
-      .then(response => response.json())
-      .then(data => {
-        // Handle the API response, update UI, etc.
-        console.log('Task added:', data);
-        location.reload();
-      })
-      .catch(error => {
-        console.error('Error adding task:', error);
-      });
+        // Make an API request to add the task
+        // Replace this with your actual API endpoint and request logic
+        fetch('https://planner-plus-server-c35af645f504.herokuapp.com/api/tasks/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                user_id: localStorage.getItem('user_id'),
+                task_desc: taskText,
+            }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the API response, update UI, etc.
+                console.log('Task added:', data);
+                location.reload();
+            })
+            .catch(error => {
+                console.error('Error adding task:', error);
+            });
     }
-  });
+});

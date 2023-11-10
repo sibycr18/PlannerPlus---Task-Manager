@@ -417,3 +417,33 @@ position: absolute;
     font-size: 16px;
     color: #fff;
 }
+
+/* Add Task Section Styles */
+.add-task-section {
+    display: flex;
+    margin-top: 20px;
+  }
+  
+  #taskInput {
+    flex: 1;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid var(--main-color);
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  
+  #addTaskButton {
+    background-color: var(--button-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #addTaskButton:hover {
+    background-color: darken(var(--button-color), 10%);
+  }
+  
