@@ -1,4 +1,4 @@
-// LOGIN PAGE
+// LOGIN PAGE ---------------------------------------------------------------------------------------
 // Declare user_id globally
 var user_id;
 
@@ -34,11 +34,9 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             // Check the API response and redirect accordingly
             if (data.success) {
-                // If login is successful, redirect to the dashboard page
-                // window.user_id = data.user_id
-                // Cookies.set('user_id', data.user_id);
-                user_id = data.user_id
-                console.log(user_id)
+                // Set user_id in local storage
+                localStorage.setItem('user_id', data.user_id);
+                // Redirect to the dashboard page
                 window.location.href = '../../Frontend/dashboard/dashboard.html'; // Replace 'dashboard.html' with the actual path to your dashboard page
             } else {
                 // If login fails, display an error message
@@ -52,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// REGISTER PAGE
+// REGISTER PAGE --------------------------------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', function() {
     const registerButton = document.getElementById('register-button');
     const errorMessage = document.getElementById('register-error');
@@ -101,10 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-
-
-
-// Dashboard scripts:
+// DASHBOARD PAGE --------------------------------------------------------------------------------------------
 
 var selector, elems, makeActive;
 selector = '.action-list li';
@@ -156,10 +151,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener('DOMContentLoaded', function() {
     // Function to fetch and render uncompleted tasks
-    function loadTasks() {
-        console.log(user_id)
-        var url = `https://planner-plus-server-c35af645f504.herokuapp.com/api/tasks/pending/${user_id}`;
-        console.log(url);
+    function loadPendingTasks() {
+        clearTasks()
+        var url = `https://planner-plus-server-c35af645f504.herokuapp.com/api/tasks/pending/${localStorage.getItem('user_id')}`;
 
         // Make a GET request to the backend endpoint
         fetch(url)
@@ -173,9 +167,48 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 
-    // Call the function when the page loads
-    loadTasks();
+    // Function to fetch and render completed tasks
+    function loadCompletedTasks() {
+        clearTasks()
+        var url = `https://planner-plus-server-c35af645f504.herokuapp.com/api/tasks/completed/${localStorage.getItem('user_id')}`;
+
+        // Make a GET request to the backend endpoint
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                // Call a function to render the tasks immediately
+                renderTasks(data.tasks);
+            })
+            .catch(error => {
+                console.error('Error fetching completed tasks:', error);
+            });
+    }
+
+    // Attach event listener to the Completed button
+    const completedButton = document.getElementById('completed-button');
+    completedButton.addEventListener('click', function() {
+        // Load completed tasks when the Completed button is clicked
+        loadCompletedTasks();
+    });
+
+    // Call the function to load pending tasks when the page loads
+    loadPendingTasks();
 });
+
+
+// Function to remove all tasks from the HTML
+function clearTasks() {
+    const tasksContainer = document.getElementById('tasks-container');
+
+    // Check if the container exists
+    if (tasksContainer) {
+        // Clear the content of the container
+        tasksContainer.innerHTML = '';
+    } else {
+        console.error('Tasks container not found.');
+    }
+}
+
 
 // Function to render tasks dynamically
 function renderTasks(tasks) {
@@ -194,7 +227,7 @@ function renderTasks(tasks) {
 
         const label = document.createElement('label');
         label.setAttribute('for', `item-${index + 1}`);
-        label.innerHTML = `<span class="label-text">${task.description}</span>`;
+        label.innerHTML = `<span class="label-text">${task.task_desc}</span>`;
 
         taskDiv.appendChild(checkbox);
         taskDiv.appendChild(label);
@@ -203,7 +236,8 @@ function renderTasks(tasks) {
     });
 }
 
-// LOGOUT PAGE
+
+// Logout button clicked
 document.addEventListener('DOMContentLoaded', function() {
     // Get the logout button element by its ID
     const logoutButton = document.getElementById('logout-button');
