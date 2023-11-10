@@ -102,14 +102,15 @@ def add_task():
     user_id = data.get('user_id')
     completed = False
     task_desc = data.get('task_desc')
-    due = data.get('due')  # Format: <YYYY-mm-ddTHH:MM:ss>
     tags = data.get('tags', [])  # List of tags
+    due = data.get('due')  # Format: <YYYY-mm-ddTHH:MM:ss>
+    due = datetime.strptime(due, f'%Y-%m-%dT%H:%M:%S%z') if due != None else None
     task_data = {
         '_id': ObjectId(),
         'user_id': ObjectId(user_id),
         'task_desc': task_desc,
         'completed': completed,
-        'due': datetime.strptime(due, f'%Y-%m-%dT%H:%M:%S%z'),
+        'due': due,
         'tags': tags
     }
     result = tasks_collection.insert_one(task_data)
