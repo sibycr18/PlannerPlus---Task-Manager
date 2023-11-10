@@ -75,7 +75,7 @@ def login_user():
     user = users_collection.find_one({'username': username})
     if user and bcrypt.check_password_hash(user['password'], password):
         session['user_id'] = str(user['_id'])  # Set user ID in session
-        response_data = {'success': True, 'message': 'Login successful'}
+        response_data = {'success': True, 'message': 'Login successful', 'user_id': str(user['_id'])}
         return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 200
     else:
         response_data = {'success': False, 'message': 'Invalid credentials'}
