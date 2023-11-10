@@ -140,7 +140,8 @@ def delete_task():
 def get_upcoming_tasks(user_id):
     upcoming_tasks = list(tasks_collection.find({'user_id': ObjectId(user_id), 'completed': False}))
     upcoming_tasks["_id"] = upcoming_tasks["_id"].toString()
-    print(upcoming_tasks)
+    for tasks in upcoming_tasks:
+        tasks["_id"] = str(tasks["_id"])
     response_data = {'success': True, 'tasks': upcoming_tasks}
     return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 200
 
