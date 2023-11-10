@@ -191,6 +191,13 @@ document.addEventListener('DOMContentLoaded', function() {
         loadCompletedTasks();
     });
 
+    // Attach event listener to the Pending button
+    const pendingButton = document.getElementById('pending-button');
+    pendingButton.addEventListener('click', function() {
+        // Load completed tasks when the Completed button is clicked
+        loadPendingTasks();
+    });
+
     // Call the function to load pending tasks when the page loads
     loadPendingTasks();
 });
@@ -198,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Function to remove all tasks from the HTML
 function clearTasks() {
-    const tasksContainer = document.getElementById('tasks-container');
+    const tasksContainer = document.querySelector('.tasks-wrapper');
 
     // Check if the container exists
     if (tasksContainer) {
@@ -271,3 +278,64 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+
+// Add task when button clicked
+document.addEventListener('DOMContentLoaded', function() {
+    const tasksContainer = document.querySelector('.tasks-wrapper');
+    const addTaskButton = document.getElementById('add-task');
+
+    addTaskButton.addEventListener('click', function() {
+      // Create a new task input field
+      const newTaskInput = document.createElement('input');
+      newTaskInput.type = 'text';
+      newTaskInput.placeholder = 'Enter task text...';
+
+      // Create a "tick" button
+      const tickButton = document.createElement('button');
+      tickButton.innerText = 'Tick';
+      
+      // Append the new input and button to the tasks container
+      tasksContainer.appendChild(newTaskInput);
+      tasksContainer.appendChild(tickButton);
+
+      // Add event listener to the "tick" button
+      tickButton.addEventListener('click', function() {
+        // Get the text from the input field
+        const taskText = newTaskInput.value;
+
+        // Call a function to add the task using an API request
+        addTask(taskText);
+
+        // Remove the input field and button after adding the task
+        tasksContainer.removeChild(newTaskInput);
+        tasksContainer.removeChild(tickButton);
+      });
+    });
+
+    function addTask(taskText) {
+        console.log(localStorage.getItem('user_id'))
+        console.log(taskText)
+      // Make an API request to add the task
+      // Replace this with your actual API endpoint and request logic
+      fetch('https://planner-plus-server-c35af645f504.herokuapp.com/api/tasks/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user_id: localStorage.getItem('user_id'),
+          task_desc: taskText,
+        }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Handle the API response, update UI, etc.
+        console.log('Task added:', data);
+        location.reload();
+      })
+      .catch(error => {
+        console.error('Error adding task:', error);
+      });
+    }
+  });
