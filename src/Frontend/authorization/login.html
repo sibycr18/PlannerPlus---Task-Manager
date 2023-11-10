@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+    <link rel="stylesheet" href="auth.css">
+    <!-- Include the js-cookie library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
+    <title>Login Page</title>
+    </head>
+
+    <body>
+    <section>
+        <div class="form-box">
+        <div class="form-value">
+            <form action="">
+            <h2>Login</h2>
+            <div class="inputbox">
+                <ion-icon name="people-outline"></ion-icon>
+                <input type="username" required>
+                <label for="">Username</label>
+            </div>
+            <div class="inputbox">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+                <input type="password" required>
+                <label for="">Password</label>
+            </div>
+            <button id="login-button">Log in</button>
+            <div class="register">
+                <p>Don't have an account?&nbsp;&nbsp;<a href="register.html">Register here</a></p>
+            </div>
+            <div id="login-error-message" class="error-message"></div>
+            </form>
+        </div>
+        </div>
+    </section>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    
+    <!-- <script src="auth.js" ></script> -->
+    <script src="../scripts/scripts.js"></script>
+    </body>
+
+</html>
