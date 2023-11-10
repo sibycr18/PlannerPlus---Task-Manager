@@ -419,7 +419,7 @@ position: absolute;
 }
 
 /* Add Task Section Styles */
-.add-task-section {
+/* .add-task-section {
     display: flex;
     margin-top: 20px;
   }
@@ -446,4 +446,4 @@ position: absolute;
   #addTaskButton:hover {
     background-color: darken(var(--button-color), 10%);
   }
-  
+   */

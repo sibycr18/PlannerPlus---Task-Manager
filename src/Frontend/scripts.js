@@ -160,46 +160,43 @@ function checkUserIdAndRedirect() {
 // Call the function when needed, for example, when the page loads
 // checkUserIdAndRedirect();
 
+// Function to fetch and render uncompleted tasks
+function loadPendingTasks() {
+    checkUserIdAndRedirect();
+    clearTasks()
+    var url = `https://planner-plus-server-c35af645f504.herokuapp.com/api/tasks/pending/${localStorage.getItem('user_id')}`;
+
+    // Make a GET request to the backend endpoint
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            // Call a function to render the tasks immediately
+            renderTasks(data.tasks);
+        })
+        .catch(error => {
+            console.error('Error fetching uncompleted tasks:', error);
+        });
+}
+
+// Function to fetch and render completed tasks
+function loadCompletedTasks() {
+    checkUserIdAndRedirect();
+    clearTasks()
+    var url = `https://planner-plus-server-c35af645f504.herokuapp.com/api/tasks/completed/${localStorage.getItem('user_id')}`;
+
+    // Make a GET request to the backend endpoint
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            // Call a function to render the tasks immediately
+            renderTasks(data.tasks);
+        })
+        .catch(error => {
+            console.error('Error fetching completed tasks:', error);
+        });
+}
 
 document.addEventListener('DOMContentLoaded', function () {
-    console.log(localStorage.getItem('user_id'));
-
-    // Function to fetch and render uncompleted tasks
-    function loadPendingTasks() {
-        checkUserIdAndRedirect();
-        clearTasks()
-        var url = `https://planner-plus-server-c35af645f504.herokuapp.com/api/tasks/pending/${localStorage.getItem('user_id')}`;
-
-        // Make a GET request to the backend endpoint
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                // Call a function to render the tasks immediately
-                renderTasks(data.tasks);
-            })
-            .catch(error => {
-                console.error('Error fetching uncompleted tasks:', error);
-            });
-    }
-
-    // Function to fetch and render completed tasks
-    function loadCompletedTasks() {
-        checkUserIdAndRedirect();
-        clearTasks()
-        var url = `https://planner-plus-server-c35af645f504.herokuapp.com/api/tasks/completed/${localStorage.getItem('user_id')}`;
-
-        // Make a GET request to the backend endpoint
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                // Call a function to render the tasks immediately
-                renderTasks(data.tasks);
-            })
-            .catch(error => {
-                console.error('Error fetching completed tasks:', error);
-            });
-    }
-
     // Attach event listener to the Completed button
     const completedButton = document.getElementById('completed-button');
     completedButton.addEventListener('click', function () {
@@ -300,44 +297,44 @@ document.addEventListener('DOMContentLoaded', function () {
 
     addTaskButton.addEventListener('click', function () {
         /////////////////////
-        //   // Create a new task input field
-        //   const newTaskInput = document.createElement('input');
-        //   newTaskInput.type = 'text';
-        //   newTaskInput.placeholder = 'Enter task text...';
+        // Create a new task input field
+        const newTaskInput = document.createElement('input');
+        newTaskInput.type = 'text';
+        newTaskInput.placeholder = 'Enter task text...';
 
-        //   // Create a "tick" button
-        //   const tickButton = document.createElement('button');
-        //   tickButton.innerText = 'Add Task';
+        // Create a "tick" button
+        const tickButton = document.createElement('button');
+        tickButton.innerText = 'Add Task';
 
-        //   // Append the new input and button to the tasks container
-        //   tasksContainer.appendChild(newTaskInput);
-        //   tasksContainer.appendChild(tickButton);
+        // Append the new input and button to the tasks container
+        tasksContainer.appendChild(newTaskInput);
+        tasksContainer.appendChild(tickButton);
 
-        //   // Add event listener to the "tick" button
-        //   tickButton.addEventListener('click', function() {
-        //     // Get the text from the input field
-        //     const taskText = newTaskInput.value;
+        // Add event listener to the "tick" button
+        tickButton.addEventListener('click', function () {
+            // Get the text from the input field
+            const taskText = newTaskInput.value;
 
-        //     // Call a function to add the task using an API request
-        //     addTask(taskText);
+            // Call a function to add the task using an API request
+            addTask(taskText);
 
-        //     // Remove the input field and button after adding the task
-        //     tasksContainer.removeChild(newTaskInput);
-        //     tasksContainer.removeChild(tickButton);
-        //   });
+            // Remove the input field and button after adding the task
+            tasksContainer.removeChild(newTaskInput);
+            tasksContainer.removeChild(tickButton);
+        });
         ///////////////////////////////
 
-        // Add Task Section
-        const taskInput = document.getElementById('taskInput');
-        const addTaskButton = document.getElementById('addTaskButton');
+        // // Add Task Section
+        // const taskInput = document.getElementById('taskInput');
+        // const addTaskButton = document.getElementById('addTaskButton');
 
-        addTaskButton.addEventListener('click', function () {
-            const taskText = taskInput.value.trim();
+        // addTaskButton.addEventListener('click', function () {
+        //     const taskText = taskInput.value.trim();
 
-            if (taskText !== '') {
-                addTask(taskText);
-            }
-        });
+        //     if (taskText !== '') {
+        //         addTask(taskText);
+        //     }
+        // });
     });
 
     function addTask(taskText) {
@@ -359,7 +356,19 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 // Handle the API response, update UI, etc.
                 console.log('Task added:', data);
-                location.reload();
+                // location.reload();
+                selector = '.action-list li';
+                elems = document.querySelectorAll(selector);
+
+                // Add 'active' class to the first element
+                elems[0].classList.add('active');
+                makeActive = function () {
+                    for (var i = 0; i < elems.length; i++)
+                        elems[i].classList.remove('active');
+                    this.classList.add('active');
+                };
+
+                loadPendingTasks()
             })
             .catch(error => {
                 console.error('Error adding task:', error);
