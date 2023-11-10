@@ -147,11 +147,26 @@ document.addEventListener('DOMContentLoaded', function () {
 //     // Call the function when the page loads
 //     loadTasks();
 // });
+function checkUserIdAndRedirect() {
+    // Check if user_id is null in localStorage
+    const userId = localStorage.getItem('user_id');
+
+    if (userId === null) {
+        // Redirect to login.html
+        window.location.href = 'login.html';
+    }
+}
+
+// Call the function when needed, for example, when the page loads
+// checkUserIdAndRedirect();
 
 
 document.addEventListener('DOMContentLoaded', function () {
+    console.log(localStorage.getItem('user_id'));
+
     // Function to fetch and render uncompleted tasks
     function loadPendingTasks() {
+        checkUserIdAndRedirect();
         clearTasks()
         var url = `https://planner-plus-server-c35af645f504.herokuapp.com/api/tasks/pending/${localStorage.getItem('user_id')}`;
 
@@ -169,6 +184,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to fetch and render completed tasks
     function loadCompletedTasks() {
+        checkUserIdAndRedirect();
         clearTasks()
         var url = `https://planner-plus-server-c35af645f504.herokuapp.com/api/tasks/completed/${localStorage.getItem('user_id')}`;
 
