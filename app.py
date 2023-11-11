@@ -43,9 +43,10 @@ tasks_collection = client.PlannerPlus.Tasks
 def test_api():
     return {"message" : "Connection Successful"}
 
+@app.route('/api')
 @app.route('/')
 def hello_world_message():
-    return "Hello, World!"
+    return "Welcome to Planner+ API Server"
 
 
 ## User Authentication Endpoints
