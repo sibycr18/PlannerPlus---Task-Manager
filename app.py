@@ -148,6 +148,8 @@ def get_upcoming_tasks(user_id):
 @app.route('/api/tasks/completed/<user_id>', methods=['GET'])
 def get_completed_tasks(user_id):
     completed_tasks = list(tasks_collection.find({'user_id': ObjectId(user_id), 'completed': True}))
+    for tasks in completed_tasks:
+        tasks["_id"] = str(tasks["_id"])
     response_data = {'success': True, 'tasks': completed_tasks}
     return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 200
 
