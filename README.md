@@ -28,6 +28,9 @@ Access a dynamic dashboard displaying task progress, upcoming deadlines, and com
 
 https://youtu.be/hsQvLRrpYTQ
 
+### Contributions video
+- Siby C.R. - Backend - [My contributions]()
+- Bharat Krishna - Frontend - [My contributions]()
 
 ## How it Works ?
 
