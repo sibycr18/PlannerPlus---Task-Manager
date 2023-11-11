@@ -31,7 +31,7 @@ Access a dynamic dashboard displaying task progress, upcoming deadlines, and com
 
 ## How it Works ?
 
-Checkout **[WORKING.md](docs/WORKING.md)** in the `docs` folder for the complete working of the project and the technologies used.
+Checkout **[WORKING.md](docs/WORKING.md)** in the `root/docs` folder for the complete working of the project and the technologies used.
 
 2. Embed video of project demo
 
