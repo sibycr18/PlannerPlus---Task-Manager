@@ -305,7 +305,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const addTaskButton = document.getElementById('add-task');
 
     addTaskButton.addEventListener('click', function () {
-        /////////////////////
         // Create a new task input field
         const newTaskInput = document.createElement('input');
         newTaskInput.type = 'text';
@@ -324,27 +323,16 @@ document.addEventListener('DOMContentLoaded', function () {
         tickButton.addEventListener('click', function () {
             // Get the text from the input field
             const taskText = newTaskInput.value;
-
-            // Call a function to add the task using an API request
-            addTask(taskText);
+            
+            if (taskText !== '') {
+                // Call a function to add the task using an API request
+                addTask(taskText);
+            }
 
             // Remove the input field and button after adding the task
             addTasksContainer.removeChild(newTaskInput);
             addTasksContainer.removeChild(tickButton);
         });
-        ///////////////////////////////
-
-        // // Add Task Section
-        // const taskInput = document.getElementById('taskInput');
-        // const addTaskButton = document.getElementById('addTaskButton');
-
-        // addTaskButton.addEventListener('click', function () {
-        //     const taskText = taskInput.value.trim();
-
-        //     if (taskText !== '') {
-        //         addTask(taskText);
-        //     }
-        // });
     });
 
     function addTask(taskText) {
