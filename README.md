@@ -51,10 +51,10 @@ Checkout **[WORKING.md](docs/WORKING.md)** in the `docs` folder for the complete
 ### Setting Up the API Server:
 
 - #### Local Development
-To configure and run the Planner Plus API server locally, follow the steps outlined in the [API Server Configuration Guide](https://chat.openai.com/c/api_server.md) . This guide provides detailed instructions on setting up the Flask server, establishing a connection with MongoDB Atlas, and configuring the necessary environment variables.
+To configure and run the Planner Plus API server locally, follow the steps outlined in the [API Server Configuration Guide](/src/API_server/README.md) . This guide provides detailed instructions on setting up the Flask server, establishing a connection with MongoDB Atlas, and configuring the necessary environment variables.
 
 - #### Cloud Deployment
-The Planner Plus API server is also hosted on the cloud, allowing you to use the deployed version without setting up a local environment. Access the API server at [Planner Plus API](https://planner-plus-server-c35af645f504.herokuapp.com/api) .
+The Planner Plus API server is also hosted on the cloud, allowing you to use the deployed version without setting up a local environment. Access the API server at [Planner Plus API](https://planner-plus-server-c35af645f504.herokuapp.com) .
 
 ## How to Run
 Instructions for running
