@@ -203,6 +203,19 @@ function clearTasks() {
     }
 }
 
+// Function to remove a task
+function removeTask(taskId) {
+    // Find the task element by task ID
+    const taskToRemove = document.querySelector(`input[task_id="${taskId}"]`);
+
+    // Check if the task element exists
+    if (taskToRemove) {
+        // Remove the task element's parent (the taskDiv)
+        taskToRemove.parentNode.remove();
+    } else {
+        console.warn(`Task with ID ${taskId} not found.`);
+    }
+}
 
 // Function to render tasks dynamically
 function renderTasks(tasks) {
@@ -227,7 +240,6 @@ function renderTasks(tasks) {
 
         taskDiv.appendChild(checkbox);
         taskDiv.appendChild(label);
-
         tasksWrapper.appendChild(taskDiv);
     });
 }
@@ -358,7 +370,8 @@ function markTaskAsComplete(task_id, user_id) {
         .then(data => {
             if (data.success) {
                 console.log('Task marked as complete:', data);
-                loadPendingTasks()
+                // loadPendingTasks()
+                removeTask(task_id)
             }
         })
         .catch(error => {
@@ -387,7 +400,8 @@ function markTaskAsIncomplete(task_id, user_id) {
         .then(data => {
             if (data.success) {
                 console.log('Task marked as incomplete:', data);
-                loadCompletedTasks()
+                // loadCompletedTasks()
+                removeTask(task_id)
             }
         })
         .catch(error => {
