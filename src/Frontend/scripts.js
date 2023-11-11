@@ -153,6 +153,9 @@ function checkUserIdAndRedirect() {
     const userId = localStorage.getItem('user_id');
 
     if (userId === null) {
+        if (localStorage.getItem('user_id') != null) {
+            logout() // Api call to logout to clear flask session
+        }
         // Redirect to login.html
         window.location.href = 'login.html';
     }
@@ -269,30 +272,32 @@ document.addEventListener('DOMContentLoaded', function () {
     logoutButton.addEventListener('click', function (event) {
         // Prevent the default behavior of the button
         event.preventDefault();
-
-        // Make a GET request to the server logout endpoint
-        fetch(`https://planner-plus-server-c35af645f504.herokuapp.com/api/users/logout`, {
-            method: 'GET'
-        })
-            .then(response => response.json())
-            .then(data => {
-                // Assuming the server returns a success message
-                if (data.success) {
-                    // Redirect to the login page after logout
-                    localStorage.clear()
-                    window.location.href = 'login.html'; // Update with the actual path to your login page
-                } else {
-                    // Handle logout failure, display an error message, etc.
-                    console.error('Logout failed:', data.message);
-                }
-            })
-            .catch(error => {
-                // Handle any errors that occurred during the fetch operation
-                console.error('Error:', error);
-            });
+        logout()
     });
 });
 
+function logout() {
+    // Make a GET request to the server logout endpoint
+    fetch(`https://planner-plus-server-c35af645f504.herokuapp.com/api/users/logout`, {
+        method: 'GET'
+    })
+        .then(response => response.json())
+        .then(data => {
+            // Assuming the server returns a success message
+            if (data.success) {
+                // Redirect to the login page after logout
+                localStorage.clear()
+                window.location.href = 'login.html'; // Update with the actual path to your login page
+            } else {
+                // Handle logout failure, display an error message, etc.
+                console.error('Logout failed:', data.message);
+            }
+        })
+        .catch(error => {
+            // Handle any errors that occurred during the fetch operation
+            console.error('Error:', error);
+        });
+}
 
 // Add task when button clicked
 document.addEventListener('DOMContentLoaded', function () {
@@ -398,16 +403,16 @@ function markTaskAsComplete(task_id, user_id) {
             user_id: user_id
         })
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            console.log('Task marked as complete:', data);
-            loadPendingTasks()
-        }
-    })
-    .catch(error => {
-        console.error('Error marking task as complete:', error);
-    });
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log('Task marked as complete:', data);
+                loadPendingTasks()
+            }
+        })
+        .catch(error => {
+            console.error('Error marking task as complete:', error);
+        });
 }
 
 // Function to mark a task as incomplete
@@ -427,24 +432,24 @@ function markTaskAsIncomplete(task_id, user_id) {
             user_id: user_id
         })
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            console.log('Task marked as incomplete:', data);
-            loadCompletedTasks()
-        }
-    })
-    .catch(error => {
-        console.error('Error marking task as incomplete:', error);
-    });
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log('Task marked as incomplete:', data);
+                loadCompletedTasks()
+            }
+        })
+        .catch(error => {
+            console.error('Error marking task as incomplete:', error);
+        });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Event listener for changes in task checkboxes
-    document.addEventListener('change', function(event) {
+    document.addEventListener('change', function (event) {
         const checkbox = event.target;
         console.log("Checkbox clicked:" + checkbox.id)
-        const taskId =  checkbox.getAttribute('task_id'); // Extract the taskId from the checkbox's ID or other attributes;
+        const taskId = checkbox.getAttribute('task_id'); // Extract the taskId from the checkbox's ID or other attributes;
         const userId = localStorage.getItem('user_id');
         // Check if the changed element is a task checkbox
         if (checkbox.type === 'checkbox' && checkbox.classList.contains('task-item')) {
