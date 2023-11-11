@@ -31,7 +31,7 @@ Access a dynamic dashboard displaying task progress, upcoming deadlines, and com
 
 ## How it Works ?
 
-Checkout **[WORKING.md](docs/WORKING.md)** in the `docs` folder for the complete working of the project and the technologies used.
+Checkout **[WORKING.md](docs/WORKING.md)** in the `root/docs` folder for the complete working of the project and the technologies used.
 
 2. Embed video of project demo
 
@@ -48,9 +48,30 @@ Checkout **[WORKING.md](docs/WORKING.md)** in the `docs` folder for the complete
 
 ## How to configure
 
-Instructions for setting up project
+### Setting Up the API Server:
 
+- #### Local Development
+To configure and run the Planner Plus API server locally, follow the steps outlined in the [API Server Configuration Guide](/src/API_server/README.md) . This guide provides detailed instructions on setting up the Flask server, establishing a connection with MongoDB Atlas, and configuring the necessary environment variables.
+
+- #### Cloud Deployment
+The Planner Plus API server is also hosted on the cloud, allowing you to use the deployed version without setting up a local environment. Access the API server at [Planner Plus API](https://planner-plus-server-c35af645f504.herokuapp.com) .
 
 ## How to Run
 
-Instructions for running
+### Running Locally
+1.  **Navigate to the `src/API_server` folder:** 
+ ```bash 
+ cd src/API_server 
+ ``` 
+2.  **Run the Flask API server  `'app.py'` :**  
+ ```bash 
+python app.py 
+```
+3.  **Open the `src/Frontend` folder:**  
+```bash 
+cd ../Frontend 
+```
+4.  **Open the `index.html` file in a web browser:** 
+
+### Run Hosted Version
+Visit the Planner<sup>+</sup> website hosted on Vercel - https://planner-plus.vercel.app

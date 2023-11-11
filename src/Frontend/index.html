@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+    <div class="task-manager">
+        <!---Left bar Starts-->
+        <div class="left-bar">
+            <!--left content Starts-->
+            <div class="left-content">
+                <ul class="action-list">
+
+                    <li class="item" id="pending-button">
+                        <ion-icon name="time"></ion-icon>
+                        <span>Pending</span>
+                    </li>
+
+                    <li class="item" id="completed-button">
+                        <ion-icon name="checkmark-circle"></ion-icon>
+                        <span>Completed</span>
+                    </li>
+
+                </ul>
+            </div>
+            <!--left content Ends-->
+        </div>
+        <!---Left bar Ends-->
+
+        <!--page content Starts-->
+        <div class="page-content">
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Your Tasks</h1>
+                    <button id="add-task" class="icon-button" title="Add Task">
+                        <ion-icon name="add-outline"></ion-icon>
+                    </button>
+                </div>
+                <button id="logout-button" class="icon-button" title="Logout"><ion-icon
+                        name="log-out-outline"></ion-icon></button>
+            </div>
+
+            <div id="addTaskWrapper">
+            </div>
+            <!---tasks wrapper -->
+            <div class="tasks-wrapper">
+                <!-- Add Task Section -->
+                <!-- <div class="add-task-section">
+                    <input type="text" id="taskInput" placeholder="Add a new task...">
+                    <button id="addTaskButton">Add Task</button>
+                </div> -->
+
+
+
+
+            </div>
+
+        </div>
+        <!--page content Ends-->
+
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+
+    <!-- <script src="dashboard.js"></script> -->
+    <script src="scripts.js"></script>
+
+</body>
+
+</html>
