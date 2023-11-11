@@ -134,6 +134,8 @@ def delete_task():
 @app.route('/api/tasks/pending/<user_id>', methods=['GET'])
 def get_upcoming_tasks(user_id):
     upcoming_tasks = list(tasks_collection.find({'user_id': ObjectId(user_id), 'completed': False}))
+    for tasks in upcoming_tasks:
+        tasks["_id"] = str(tasks["_id"])
     response_data = {'tasks': upcoming_tasks}
     return Response(json_util.dumps(response_data, indent=2), content_type='application/json'), 200
 

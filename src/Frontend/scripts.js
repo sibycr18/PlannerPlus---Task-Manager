@@ -101,6 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // DASHBOARD PAGE --------------------------------------------------------------------------------------------
 
+
 var selector, elems, makeActive;
 selector = '.action-list li';
 elems = document.querySelectorAll(selector);
@@ -244,6 +245,8 @@ function renderTasks(tasks) {
         checkbox.id = `item-${index + 1}`;
         checkbox.className = 'task-item';
         checkbox.checked = task.completed;
+        checkbox.setAttribute('task_id', task._id); // Set the task_id attribute = task.task_id;
+        // console.log("task_id attribute: " + checkbox.getAttribute('task_id'));
 
         const label = document.createElement('label');
         label.setAttribute('for', `item-${index + 1}`);
@@ -276,6 +279,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Assuming the server returns a success message
                 if (data.success) {
                     // Redirect to the login page after logout
+                    localStorage.clear()
                     window.location.href = 'login.html'; // Update with the actual path to your login page
                 } else {
                     // Handle logout failure, display an error message, etc.
@@ -374,4 +378,83 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('Error adding task:', error);
             });
     }
+});
+
+
+// Function to mark a task as complete
+function markTaskAsComplete(task_id, user_id) {
+    console.log("Task:" + JSON.stringify({
+        task_id: task_id,
+        user_id: user_id
+    }))
+    // Make a POST request to mark the task as complete
+    fetch(`https://planner-plus-server-c35af645f504.herokuapp.com/api/tasks/mark/complete`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            task_id: task_id,
+            user_id: user_id
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log('Task marked as complete:', data);
+            loadPendingTasks()
+        }
+    })
+    .catch(error => {
+        console.error('Error marking task as complete:', error);
+    });
+}
+
+// Function to mark a task as incomplete
+function markTaskAsIncomplete(task_id, user_id) {
+    console.log("Task:" + JSON.stringify({
+        task_id: task_id,
+        user_id: user_id
+    }))
+    // Make a POST request to mark the task as complete
+    fetch(`https://planner-plus-server-c35af645f504.herokuapp.com/api/tasks/mark/incomplete`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            task_id: task_id,
+            user_id: user_id
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log('Task marked as incomplete:', data);
+            loadCompletedTasks()
+        }
+    })
+    .catch(error => {
+        console.error('Error marking task as incomplete:', error);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Event listener for changes in task checkboxes
+    document.addEventListener('change', function(event) {
+        const checkbox = event.target;
+        console.log("Checkbox clicked:" + checkbox.id)
+        const taskId =  checkbox.getAttribute('task_id'); // Extract the taskId from the checkbox's ID or other attributes;
+        const userId = localStorage.getItem('user_id');
+        // Check if the changed element is a task checkbox
+        if (checkbox.type === 'checkbox' && checkbox.classList.contains('task-item')) {
+            if (checkbox.checked) {
+                // Call the function to mark the task as complete
+                markTaskAsComplete(taskId, userId);
+            } else {
+                // Call the function to mark the task as incomplete
+                markTaskAsIncomplete(taskId, userId);
+            }
+        }
+    });
 });
