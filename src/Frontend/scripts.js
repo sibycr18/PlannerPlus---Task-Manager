@@ -87,7 +87,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     // If registration fails, display an error message
                     errorMessageText.textContent = 'User already exists.';
                     errorMessage.style.display = "block";
-                    // alert('User already exists.');
                 }
             })
             .catch(error => {
@@ -99,7 +98,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // DASHBOARD PAGE --------------------------------------------------------------------------------------------
-
 
 var selector, elems, makeActive;
 selector = '.action-list li';
@@ -230,8 +228,7 @@ function renderTasks(tasks) {
         checkbox.id = `item-${index + 1}`;
         checkbox.className = 'task-item';
         checkbox.checked = task.completed;
-        checkbox.setAttribute('task_id', task._id); // Set the task_id attribute = task.task_id;
-        // console.log("task_id attribute: " + checkbox.getAttribute('task_id'));
+        checkbox.setAttribute('task_id', task._id);
 
         const label = document.createElement('label');
         label.setAttribute('for', `item-${index + 1}`);
@@ -286,6 +283,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const addTaskButton = document.getElementById('add-task');
 
     addTaskButton.addEventListener('click', function () {
+        // Disable the button whhile adding a task
+        addTaskButton.disabled = true
+
         // Create a new task input field
         const newTaskInput = document.createElement('input');
         newTaskInput.type = 'text';
@@ -313,6 +313,8 @@ document.addEventListener('DOMContentLoaded', function () {
             // Remove the input field and button after adding the task
             addTasksContainer.removeChild(newTaskInput);
             addTasksContainer.removeChild(tickButton);
+            // Enable the button after adding a task
+            addTaskButton.disabled = false
         });
     });
 
