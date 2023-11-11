@@ -29,8 +29,8 @@ Access a dynamic dashboard displaying task progress, upcoming deadlines, and com
 Planner<sup>+</sup> Product Walkthrough: [Video link](https://youtu.be/hsQvLRrpYTQ)
 
 ### Contributions video
-- Siby C.R. - Backend - [Video link]()
-- Bharat Krishna - Frontend - [Video link]()
+- Siby C.R. - Backend - [Video link](https://youtu.be/7SV0M6AxyxU)
+- Bharat Krishna - Frontend - [Video link](https://youtu.be/VZL65VZ0Xf4)
 
 ## How it Works ?
 
