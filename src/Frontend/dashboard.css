@@ -447,3 +447,22 @@ position: absolute;
     background-color: darken(var(--button-color), 10%);
   }
    */
+   #addTaskWrapper{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+   }
+
+   #addTaskWrapper input[type="text"]{
+    padding: 5px 8px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+    /* margin-top: 20px; */
+   }
+
+   #addTaskWrapper .icon-button:before{
+    content: "\2713";
+    color: #fff;
+   }

@@ -301,7 +301,7 @@ function logout() {
 
 // Add task when button clicked
 document.addEventListener('DOMContentLoaded', function () {
-    const tasksContainer = document.querySelector('.tasks-wrapper');
+    const addTasksContainer = document.getElementById('addTaskWrapper');
     const addTaskButton = document.getElementById('add-task');
 
     addTaskButton.addEventListener('click', function () {
@@ -309,15 +309,16 @@ document.addEventListener('DOMContentLoaded', function () {
         // Create a new task input field
         const newTaskInput = document.createElement('input');
         newTaskInput.type = 'text';
-        newTaskInput.placeholder = 'Enter task text...';
+        newTaskInput.placeholder = 'Enter task here...';
 
         // Create a "tick" button
         const tickButton = document.createElement('button');
-        tickButton.innerText = 'Add Task';
+        tickButton.classList.add('icon-button');
+        tickButton.innerText = '';
 
         // Append the new input and button to the tasks container
-        tasksContainer.appendChild(newTaskInput);
-        tasksContainer.appendChild(tickButton);
+        addTasksContainer.appendChild(newTaskInput);
+        addTasksContainer.appendChild(tickButton);
 
         // Add event listener to the "tick" button
         tickButton.addEventListener('click', function () {
@@ -328,8 +329,8 @@ document.addEventListener('DOMContentLoaded', function () {
             addTask(taskText);
 
             // Remove the input field and button after adding the task
-            tasksContainer.removeChild(newTaskInput);
-            tasksContainer.removeChild(tickButton);
+            addTasksContainer.removeChild(newTaskInput);
+            addTasksContainer.removeChild(tickButton);
         });
         ///////////////////////////////
 
