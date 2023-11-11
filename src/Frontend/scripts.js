@@ -69,7 +69,6 @@ document.addEventListener('DOMContentLoaded', function () {
             password: password
         };
 
-        // alert("Fetch called");
         // Make an API request to the backend server for registration
         fetch('https://planner-plus-server-c35af645f504.herokuapp.com/api/users/register', {
             method: 'POST',
@@ -370,7 +369,6 @@ function markTaskAsComplete(task_id, user_id) {
         .then(data => {
             if (data.success) {
                 console.log('Task marked as complete:', data);
-                // loadPendingTasks()
                 removeTask(task_id)
             }
         })
@@ -400,7 +398,6 @@ function markTaskAsIncomplete(task_id, user_id) {
         .then(data => {
             if (data.success) {
                 console.log('Task marked as incomplete:', data);
-                // loadCompletedTasks()
                 removeTask(task_id)
             }
         })
