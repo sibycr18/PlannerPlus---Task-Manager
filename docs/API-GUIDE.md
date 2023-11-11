@@ -1,4 +1,4 @@
-# Planner Plus API Reference Guide
+# Planner<sup>+</sup> API Reference Guide
 
 ## 1. Test API
 ### Endpoint: `/api/test`
