@@ -57,4 +57,21 @@ To configure and run the Planner Plus API server locally, follow the steps outli
 The Planner Plus API server is also hosted on the cloud, allowing you to use the deployed version without setting up a local environment. Access the API server at [Planner Plus API](https://planner-plus-server-c35af645f504.herokuapp.com) .
 
 ## How to Run
-Instructions for running
+
+### Running Locally
+1.  **Navigate to the `src/API_server` folder:** 
+ ```bash 
+ cd src/API_server 
+ ``` 
+2.  **Run the Flask API server  `'app.py'` :**  
+ ```bash 
+python app.py 
+```
+3.  **Open the `src/Frontend` folder:**  
+```bash 
+cd ../Frontend 
+```
+4.  **Open the `index.html` file in a web browser:** 
+
+### Run Hosted Version
+Visit the Planner<sup>+</sup> website hosted on Vercel - https://planner-plus.vercel.app
