@@ -117,37 +117,7 @@ makeActive = function () {
 for (var i = 0; i < elems.length; i++)
     elems[i].addEventListener('mousedown', makeActive);
 
-document.addEventListener('DOMContentLoaded', function () {
-    const pendingButton = document.getElementById('pending');
-    const completedButton = document.getElementById('completed');
 
-    // pendingButton.addEventListener('click', function (event) {
-    //     pendingButton.classList.add("active");
-    //     alert("clicked:" + this.id);
-    // });
-});
-
-// document.addEventListener('DOMContentLoaded', function() {
-//     // Function to fetch and render uncompleted tasks
-//     function loadTasks() {
-//         url = `https://planner-plus-server-c35af645f504.herokuapp.com/api/tasks/pending/${window.user_id}`
-//         console.log(url)
-
-//         // Make a GET request to the backend endpoint
-//         fetch(url)
-//             .then(response => response.json())
-//             .then(uncompletedTasks => {
-//                 // Call a function to render the tasks immediately
-//                 renderTasks(uncompletedTasks);
-//             })
-//             .catch(error => {
-//                 console.error('Error fetching uncompleted tasks:', error);
-//             });
-//     }
-
-//     // Call the function when the page loads
-//     loadTasks();
-// });
 function checkUserIdAndRedirect() {
     // Check if user_id is null in localStorage
     const userId = localStorage.getItem('user_id');
@@ -336,10 +306,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function addTask(taskText) {
-        console.log(localStorage.getItem('user_id'))
-        console.log(taskText)
         // Make an API request to add the task
-        // Replace this with your actual API endpoint and request logic
         fetch('https://planner-plus-server-c35af645f504.herokuapp.com/api/tasks/add', {
             method: 'POST',
             headers: {
@@ -354,17 +321,12 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 // Handle the API response, update UI, etc.
                 console.log('Task added:', data);
-                // location.reload();
                 selector = '.action-list li';
-                elems = document.querySelectorAll(selector);
 
-                // Add 'active' class to the first element
+                // Add 'active' class to the pending button and remove it from the completed button
+                elems = document.querySelectorAll(selector);
                 elems[0].classList.add('active');
-                makeActive = function () {
-                    for (var i = 0; i < elems.length; i++)
-                        elems[i].classList.remove('active');
-                    this.classList.add('active');
-                };
+                elems[1].classList.remove('active');
 
                 loadPendingTasks()
             })
