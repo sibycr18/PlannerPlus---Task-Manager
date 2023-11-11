@@ -32,8 +32,16 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     min-height: 100vh;
     width: 100%;
+}
+
+.logo{
+    margin-bottom: 30px;
+    color: #fff;
+    font-size: 40px;
+    text-shadow: 2px 2px 4px rgba(22, 22, 22, 0.5);
 }
 
 .form-box {
@@ -49,6 +57,10 @@ section {
     justify-content: center;
     align-items: center;
     box-shadow: inset 0px 0px 20px rgba(255, 255, 255, 0.3);
+}
+.form-box h2 {
+    color: #fff;
+    text-align: center;
 }
 
 h2 {
