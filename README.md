@@ -26,7 +26,7 @@ Access a dynamic dashboard displaying task progress, upcoming deadlines, and com
 
 ## Link to product walkthrough
 
-[link to video]
+https://youtu.be/hsQvLRrpYTQ
 
 
 ## How it Works ?
