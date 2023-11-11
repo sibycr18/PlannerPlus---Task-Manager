@@ -1,7 +1,6 @@
 ![StackUp Banner](https://tinkerhub.frappe.cloud/files/stackup%20banner.jpeg)
 
 # Planner<sup>+</sup>
-
 Planner<sup>+</sup> offers a user-friendly interface where you can effortlessly create and manage your tasks with a few clicks. Whether you're a professional aiming to meet project milestones or a student keeping track of assignments, Planner<sup>+</sup> ensures that every task is captured, organized, and completed efficiently.
 
 ## Key Features
@@ -14,18 +13,14 @@ Access a dynamic dashboard displaying task progress, upcoming deadlines, and com
 
 
 ## Team members
-
 1. Siby C.R. 🔗[sibycr18](https://github.com/sibycr18)
 2. Bharat Krishna 🔗[Bharat2026](https://github.com/Bharat2026)
 
 
 ## Team Id:
-
 !idealists
 
-
 ## Link to product walkthrough
-
 Planner<sup>+</sup> Product Walkthrough: [Video link](https://youtu.be/hsQvLRrpYTQ)
 
 ### Contributions video
@@ -33,14 +28,12 @@ Planner<sup>+</sup> Product Walkthrough: [Video link](https://youtu.be/hsQvLRrpY
 - Bharat Krishna - Frontend - [Video link](https://youtu.be/VZL65VZ0Xf4)
 
 ## How it Works ?
-
 Checkout **[WORKING.md](docs/WORKING.md)** in the `root/docs` folder for the complete working of the project and the technologies used.
 
 2. Embed video of project demo
 
 
 ## Libraries Used
-
 - Flask - v3.0.0
 - MongoDB Atlas - Latest Version
 - PyMongo - v4.6.0
