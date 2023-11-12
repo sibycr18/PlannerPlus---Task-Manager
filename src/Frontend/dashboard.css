@@ -504,15 +504,3 @@ body,
 ::-webkit-scrollbar-thumb:hover {
     background-color: #a8a8a8;
 }
-
-/* For Firefox */
-html {
-    scrollbar-width: thin;
-    scrollbar-color: #c1c1c1 #f5f5f5;
-}
-
-/* For Microsoft Edge */
-body {
-    scrollbar-width: thin;
-    scrollbar-color: #c1c1c1 #f5f5f5;
-}
