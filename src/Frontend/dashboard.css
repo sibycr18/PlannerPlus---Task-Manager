@@ -202,10 +202,17 @@ ul {
     color: var(--task-color);
     font-size: 16px;
     font-weight: 400;
+
+    /* Initial state */
+    transform: translateX(0);
+    
+    /* Apply smooth transition to the transform property over 0.3 seconds */
+    transition: transform 0.1s ease-out;
 }
 
 .task:hover{
-    transform: translateX(2px);
+    /* New state on hover */
+    transform: translateX(1px);
 }
 
 .task label{
