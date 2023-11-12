@@ -473,3 +473,26 @@ position: absolute;
     content: "\2713";
     color: #fff;
    }
+
+
+/* Scrollbar Styles */
+/* For Webkit Browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 12px;
+    border-radius: 10px; /* Set border-radius for the scrollbar track */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: #f5f5f5;
+    border-radius: 10px; /* Set border-radius for the scrollbar track */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #c1c1c1;
+    border-radius: 6px; /* Set border-radius for the scrollbar thumb */
+    border: 3px solid #f5f5f5;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #a8a8a8;
+  }
