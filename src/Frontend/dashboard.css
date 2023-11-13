@@ -202,7 +202,6 @@ ul {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
-    /* padding-left: 30px; */
     color: var(--task-color);
     font-size: 16px;
     font-weight: 400;
@@ -480,8 +479,12 @@ body,
 }
 
 .no-tasks-message{
-    text-align: start;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
     color: var(--task-color);
+    font-size: 16px;
+    font-weight: 400;
 }
 
 
