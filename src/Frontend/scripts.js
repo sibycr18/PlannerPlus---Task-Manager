@@ -134,13 +134,14 @@ function checkUserIdAndRedirect() {
 // Function to fetch and render uncompleted tasks
 function loadPendingTasks() {
     checkUserIdAndRedirect();
-    clearTasks()
     var url = `https://planner-plus-server-c35af645f504.herokuapp.com/api/tasks/pending/${localStorage.getItem('user_id')}`;
 
     // Make a GET request to the backend endpoint
     fetch(url)
         .then(response => response.json())
         .then(data => {
+            // Clear the tasks container
+            clearTasks()
             // Call a function to render the tasks immediately
             renderTasks(data.tasks);
         })
@@ -152,13 +153,14 @@ function loadPendingTasks() {
 // Function to fetch and render completed tasks
 function loadCompletedTasks() {
     checkUserIdAndRedirect();
-    clearTasks()
     var url = `https://planner-plus-server-c35af645f504.herokuapp.com/api/tasks/completed/${localStorage.getItem('user_id')}`;
 
     // Make a GET request to the backend endpoint
     fetch(url)
         .then(response => response.json())
         .then(data => {
+            // Clear the tasks container
+            clearTasks()
             // Call a function to render the tasks immediately
             renderTasks(data.tasks);
         })
