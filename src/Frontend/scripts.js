@@ -220,27 +220,34 @@ function removeTask(taskId) {
 function renderTasks(tasks) {
     const tasksWrapper = document.querySelector('.tasks-wrapper');
 
-    tasks.forEach((task, index) => {
-        const taskDiv = document.createElement('div');
-        taskDiv.className = 'task';
+    if (tasks.length === 0) {
+        // If tasks array is empty, display a message
+        const noTasksMessage = document.createElement('p');
+        noTasksMessage.textContent = 'No tasks to show here';
+        noTasksMessage.className = 'no-tasks-message';
+        tasksWrapper.appendChild(noTasksMessage);
+    } else {
+        tasks.forEach((task, index) => {
+            const taskDiv = document.createElement('div');
+            taskDiv.className = 'task';
 
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.name = 'task';
-        checkbox.id = `item-${index + 1}`;
-        checkbox.className = 'task-item';
-        checkbox.checked = task.completed;
-        checkbox.setAttribute('task_id', task._id);
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.name = 'task';
+            checkbox.id = `item-${index + 1}`;
+            checkbox.className = 'task-item';
+            checkbox.checked = task.completed;
+            checkbox.setAttribute('task_id', task._id);
 
-        const label = document.createElement('label');
-        label.setAttribute('for', `item-${index + 1}`);
-        label.innerHTML = `<span class="label-text">${task.task_desc}</span>`;
+            const label = document.createElement('label');
+            label.setAttribute('for', `item-${index + 1}`);
+            label.innerHTML = `<span class="label-text">${task.task_desc}</span>`;
 
-        taskDiv.appendChild(checkbox);
-        taskDiv.appendChild(label);
-        tasksWrapper.appendChild(taskDiv);
-    });
-}
+            taskDiv.appendChild(checkbox);
+            taskDiv.appendChild(label);
+            tasksWrapper.appendChild(taskDiv);
+        });
+    }}
 
 
 // Logout button clicked

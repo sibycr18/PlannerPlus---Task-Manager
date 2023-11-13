@@ -479,6 +479,11 @@ body,
     color: #fff;
 }
 
+.no-tasks-message{
+    text-align: start;
+    color: var(--task-color);
+}
+
 
 /* Scrollbar Styles */
 /* For Webkit Browsers (Chrome, Safari) */
