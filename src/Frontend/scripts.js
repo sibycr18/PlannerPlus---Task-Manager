@@ -129,7 +129,7 @@ function checkUserIdAndRedirect() {
 }
 
 // Call the function when needed, for example, when the page loads
-// checkUserIdAndRedirect();
+checkUserIdAndRedirect();
 
 // Function to fetch and render uncompleted tasks
 function loadPendingTasks() {
